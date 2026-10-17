@@ -10,7 +10,7 @@ A quick-entry calculator for adding up flight time, block time and landings from
 - **Enter** adds the entry. Each row shows a running total on the right so you can check against logbook page subtotals.
 - **Tap a row** to edit it (the button changes to *Update*); **C** cancels the edit.
 - **Swipe a row left** to delete it; swipe all the way across to delete at once. **Undo** appears after a delete or *Clear All*.
-- Each mode keeps its own list, and both are saved on the device, so closing the app loses nothing.
+- Each mode keeps its own list, and all are saved on the device, so closing the app loses nothing.
 - Hardware keyboard: digits, `Backspace`, `Enter` (or `+`/`=`), `Esc`/`C` to clear, `Tab`/`Shift+Tab` to switch between *From* and *To*.
 
 Phones get a single column (list on top, keypad at the bottom). iPad landscape, and other wide screens, put the keypad on the left and the list on the right.

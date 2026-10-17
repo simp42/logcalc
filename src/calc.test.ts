@@ -1,5 +1,17 @@
 import { describe, expect, it } from 'vitest';
-import { appendDigit, formatDecimalHours, formatValue, parseInput, total, valueToInput } from './calc';
+import {
+  appendDigit,
+  clockToInput,
+  durationBetween,
+  formatClock,
+  formatClockInput,
+  formatDecimalHours,
+  formatValue,
+  parseClock,
+  parseInput,
+  total,
+  valueToInput,
+} from './calc';
 
 describe('time mode', () => {
   it('parses H:MM digits', () => {
@@ -44,5 +56,31 @@ describe('appendDigit', () => {
     expect(appendDigit('0', '5')).toBe('5');
     expect(appendDigit('123456', '7')).toBe('123456');
     expect(appendDigit('12', '0')).toBe('120');
+  });
+});
+
+describe('duration mode', () => {
+  it('parses clock times', () => {
+    expect(parseClock('0815')).toBe(495);
+    expect(parseClock('815')).toBe(495);
+    expect(parseClock('0')).toBe(0);
+    expect(parseClock('2359')).toBe(1439);
+    expect(parseClock('2400')).toBeNull();
+    expect(parseClock('0860')).toBeNull();
+    expect(parseClock('')).toBeNull();
+  });
+
+  it('formats clock times', () => {
+    expect(formatClockInput('815')).toBe('08:15');
+    expect(formatClockInput('')).toBe('00:00');
+    expect(formatClock(495)).toBe('08:15');
+    expect(clockToInput(495)).toBe('0815');
+    expect(clockToInput(0)).toBe('0000');
+  });
+
+  it('computes the duration between two times', () => {
+    expect(formatValue(durationBetween(parseClock('0815')!, parseClock('1032')!), 'duration')).toBe('2:17');
+    expect(formatValue(durationBetween(parseClock('2250')!, parseClock('0115')!), 'duration')).toBe('2:25');
+    expect(durationBetween(600, 600)).toBe(0);
   });
 });

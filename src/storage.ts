@@ -3,6 +3,9 @@ import type { Mode } from './calc';
 export interface Entry {
   id: number;
   value: number;
+  /** Duration mode: start and end clock times in minutes since midnight. */
+  from?: number;
+  to?: number;
 }
 
 export interface SavedState {
@@ -13,7 +16,7 @@ export interface SavedState {
 const KEY = 'logcalc:v1';
 
 export function loadState(): SavedState {
-  const empty: SavedState = { mode: 'time', entries: { time: [], landings: [] } };
+  const empty: SavedState = { mode: 'time', entries: { time: [], landings: [], duration: [] } };
   try {
     const raw = localStorage.getItem(KEY);
     if (!raw) return empty;
@@ -23,8 +26,12 @@ export function loadState(): SavedState {
         ? list.filter((e): e is Entry => typeof e?.id === 'number' && Number.isInteger(e?.value) && e.value >= 0)
         : [];
     return {
-      mode: parsed.mode === 'landings' ? 'landings' : 'time',
-      entries: { time: valid(parsed.entries?.time), landings: valid(parsed.entries?.landings) },
+      mode: parsed.mode === 'landings' || parsed.mode === 'duration' ? parsed.mode : 'time',
+      entries: {
+        time: valid(parsed.entries?.time),
+        landings: valid(parsed.entries?.landings),
+        duration: valid(parsed.entries?.duration),
+      },
     };
   } catch {
     return empty;

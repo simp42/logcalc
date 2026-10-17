@@ -3,6 +3,8 @@ import { useRef, useState } from 'react';
 interface Props {
   index: number;
   value: string;
+  /** Secondary text shown after the value, e.g. the from–to clock times. */
+  detail?: string;
   running: string;
   editing: boolean;
   open: boolean;
@@ -15,7 +17,7 @@ interface Props {
 const ACTION_WIDTH = 88;
 
 /** List row: tap to edit, swipe left to reveal Delete (or swipe far to delete). */
-export function EntryRow({ index, value, running, editing, open, onOpen, onClose, onTap, onDelete }: Props) {
+export function EntryRow({ index, value, detail, running, editing, open, onOpen, onClose, onTap, onDelete }: Props) {
   const [dragX, setDragX] = useState<number | null>(null);
   const start = useRef<{ x: number; y: number; base: number } | null>(null);
   const dragged = useRef(false);
@@ -37,7 +39,7 @@ export function EntryRow({ index, value, running, editing, open, onOpen, onClose
         style={{ transform: `translateX(${offset}px)` }}
         role="button"
         tabIndex={0}
-        aria-label={`Entry ${index + 1}: ${value}. Tap to edit.`}
+        aria-label={`Entry ${index + 1}: ${value}${detail ? ` (${detail})` : ''}. Tap to edit.`}
         onKeyDown={(e) => {
           if (e.key === ' ') {
             e.preventDefault();
@@ -84,7 +86,10 @@ export function EntryRow({ index, value, running, editing, open, onOpen, onClose
         }}
       >
         <span className="row-index">{index + 1}</span>
-        <span className="row-value">{value}</span>
+        <span className="row-value">
+          {value}
+          {detail && <span className="row-detail">{detail}</span>}
+        </span>
         <span className="row-running">{running}</span>
       </div>
     </li>

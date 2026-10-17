@@ -159,8 +159,9 @@ button {
   .display {
     padding: 4px 12px !important;
   }
-  .display-value {
-    font-size: 30px !important;
+  .display-value,
+  .clock-value {
+    font-size: 26px !important;
   }
 }
 
@@ -172,12 +173,14 @@ button {
   border-radius: 10px;
   padding: 3px;
   gap: 3px;
-  flex: 0 1 320px;
+  flex: 0 1 420px;
+  min-width: 0;
 }
 
 .segmented button {
   flex: 1;
-  padding: 9px 12px;
+  min-width: 0;
+  padding: 9px 6px;
   border-radius: 8px;
   font-size: 15px;
   font-weight: 600;
@@ -213,6 +216,28 @@ button {
   font-size: 15px;
   padding: 9px 4px;
   white-space: nowrap;
+}
+
+@media (max-width: 420px) {
+  .segmented button {
+    font-size: 14px;
+    padding: 8px 2px;
+    gap: 3px;
+  }
+  .badge {
+    font-size: 10px;
+    min-width: 15px;
+    padding: 1px 3px;
+  }
+  .clear-all {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 359px) {
+  .badge {
+    display: none;
+  }
 }
 
 /* ---------- Entries ---------- */
@@ -289,6 +314,13 @@ button {
 .row-value {
   font-size: 24px;
   font-weight: 500;
+}
+
+.row-detail {
+  margin-left: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
 }
 
 .row-running {
@@ -422,6 +454,69 @@ button {
 
 .key.enter:disabled {
   cursor: default;
+}
+
+/* Duration mode: From / To fields and the result. */
+
+.display.clock {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  padding: 6px;
+  align-items: stretch;
+}
+
+.clock-field,
+.clock-result {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2px;
+  padding: 6px 10px;
+  border-radius: 9px;
+  border: 2px solid transparent;
+  text-align: left;
+  min-width: 0;
+}
+
+.clock-field {
+  background: var(--surface-2);
+}
+
+.clock-field.active {
+  border-color: var(--accent);
+}
+
+.clock-field.invalid .clock-value {
+  color: var(--danger);
+}
+
+.clock-result {
+  align-items: flex-end;
+  position: relative;
+}
+
+.clock-value {
+  font-size: clamp(24px, 4.2vh, 44px);
+  font-weight: 300;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.clock-value.placeholder {
+  color: var(--muted);
+}
+
+.clock-result .clock-value {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.overnight {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--edit);
 }
 
 /* ---------- Toast ---------- */

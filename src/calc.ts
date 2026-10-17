@@ -1,7 +1,7 @@
 export type Mode = 'time' | 'landings' | 'duration';
 
-/** Longest digit string accepted on the keypad (9999:59 or 999999 landings). */
-export const MAX_DIGITS = 6;
+/** Longest digit string accepted on the keypad (99999:59, enough for old airframe logs). */
+export const MAX_DIGITS = 7;
 
 /** Clock times are entered as HHMM. */
 export const CLOCK_DIGITS = 4;

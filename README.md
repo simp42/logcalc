@@ -4,7 +4,7 @@ A quick-entry calculator for adding up flight time, block time and landings from
 
 ## Using it
 
-- **Time mode:** type digits as `H…HMM`: `120` → 1:20, `1230` → 12:30. Minutes of 60 or more carry into hours (`95` → 1:35). The total is also shown in decimal hours.
+- **Time mode:** type digits as `H…HMM`: `120` → 1:20, `1230` → 12:30, up to five hour digits (99999:59). Minutes of 60 or more carry into hours (`95` → 1:35). The total is also shown in decimal hours.
 - **Landings mode:** type the count.
 - **Duration mode:** type a start and end clock time (off/on block, or takeoff/landing) as `HHMM`, e.g. `0815` then `1032` → 2:17. After four digits it moves to the end time on its own; for three-digit times like `815`, press **Next**. An end time earlier than the start counts as the next day (`2250` → `0115` = 2:25). Each leg is added to the list with its times, so several legs can be totalled. Tap *From* or *To* to correct either field.
 - **Enter** adds the entry. Each row shows a running total on the right so you can check against logbook page subtotals.

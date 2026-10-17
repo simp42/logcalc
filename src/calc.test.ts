@@ -32,6 +32,11 @@ describe('time mode', () => {
     expect(formatValue(0, 'time')).toBe('0:00');
   });
 
+  it('accepts five-digit hours', () => {
+    expect(formatValue(parseInput('1234559', 'time'), 'time')).toBe('12345:59');
+    expect(valueToInput(parseInput('1234559', 'time'), 'time')).toBe('1234559');
+  });
+
   it('round-trips through edit input', () => {
     expect(valueToInput(parseInput('1230', 'time'), 'time')).toBe('1230');
     expect(valueToInput(parseInput('95', 'time'), 'time')).toBe('135');
@@ -54,7 +59,8 @@ describe('landings mode', () => {
 describe('appendDigit', () => {
   it('limits length and drops a leading zero', () => {
     expect(appendDigit('0', '5')).toBe('5');
-    expect(appendDigit('123456', '7')).toBe('123456');
+    expect(appendDigit('123456', '7')).toBe('1234567');
+    expect(appendDigit('1234567', '8')).toBe('1234567');
     expect(appendDigit('12', '0')).toBe('120');
   });
 });

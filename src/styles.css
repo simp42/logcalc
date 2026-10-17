@@ -1,17 +1,21 @@
 :root {
-  --bg: #0b1d33;
-  --surface: #12294a;
-  --surface-2: #1a3560;
-  --key: #1c3a66;
-  --key-pressed: #2c5591;
-  --fn: #2a2f45;
-  --text: #f2f6fb;
-  --muted: #8ea5c4;
-  --accent: #5cc8ff;
-  --accent-ink: #04223a;
-  --danger: #ff6b6b;
-  --edit: #ffc94d;
-  --line: rgba(255, 255, 255, 0.09);
+  /* Dark: graphite and silver with orange highlights. */
+  --bg: #121214;
+  --surface: #1d1e21;
+  --surface-2: #2a2b2f;
+  --key: #333438;
+  --key-pressed: #55575d;
+  --fn: #a5a7ad;
+  --fn-pressed: #d4d5d9;
+  --fn-ink: #121214;
+  --text: #f4f4f5;
+  --muted: #9a9ca3;
+  --accent: #ff9f0a;
+  --accent-ink: #1a1102;
+  --danger: #ff5c5c;
+  --edit: #d9dbe0;
+  --line: rgba(255, 255, 255, 0.08);
+  --toast: #3a3b40;
   --radius: 12px;
   --gap: 8px;
   color-scheme: dark;
@@ -19,19 +23,22 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg: #eef2f7;
+    --bg: #f2f2f4;
     --surface: #ffffff;
-    --surface-2: #e3eaf3;
+    --surface-2: #e6e7ea;
     --key: #ffffff;
-    --key-pressed: #cfdcec;
-    --fn: #dfe5ee;
-    --text: #0b1d33;
-    --muted: #5b6f8a;
-    --accent: #0a7bc2;
+    --key-pressed: #d4d5d9;
+    --fn: #d4d5d9;
+    --fn-pressed: #b9bbc0;
+    --fn-ink: #1c1c1e;
+    --text: #1c1c1e;
+    --muted: #6b6d74;
+    --accent: #c75f00;
     --accent-ink: #ffffff;
     --danger: #d63c3c;
-    --edit: #b07800;
-    --line: rgba(11, 29, 51, 0.1);
+    --edit: #5a5c63;
+    --line: rgba(0, 0, 0, 0.09);
+    --toast: #2c2d31;
     color-scheme: light;
   }
 }
@@ -428,11 +435,11 @@ button {
 
 .key.fn {
   background: var(--fn);
-  color: var(--danger);
+  color: var(--fn-ink);
 }
 
 .key.fn.pressed {
-  background: var(--key-pressed);
+  background: var(--fn-pressed);
 }
 
 .key.enter {
@@ -498,7 +505,7 @@ button {
 }
 
 .clock-value {
-  font-size: clamp(24px, 4.2vh, 44px);
+  font-size: clamp(22px, min(4.2vh, 7.5vw), 44px);
   font-weight: 300;
   line-height: 1.15;
   white-space: nowrap;
@@ -530,7 +537,7 @@ button {
   align-items: center;
   gap: 16px;
   padding: 10px 10px 10px 18px;
-  background: #222b3a;
+  background: var(--toast);
   color: #fff;
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
@@ -540,13 +547,8 @@ button {
 }
 
 .toast button {
-  color: var(--accent);
+  color: #ff9f0a;
   font-weight: 700;
   padding: 6px 10px;
 }
 
-@media (prefers-color-scheme: light) {
-  .toast button {
-    color: #5cc8ff;
-  }
-}
